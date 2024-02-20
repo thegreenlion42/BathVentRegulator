@@ -1,7 +1,7 @@
 from ota import OTAUpdater
 from WIFI_CONFIG import SSID, PASSWORD
-from ota import OTAUpdater
-from WIFI_CONFIG import SSID, PASSWORD
+from machine import Pin
+import time
 
 led_pin = 3  # Default on-board RGB LED GPIO08 does not work
 
