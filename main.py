@@ -4,8 +4,7 @@ from machine import Pin
 import time
 
 #Update routine
-firmware_url = "https://github.com/thegreenlion42/BathVentRegulator/new/main/"
-
+firmware_url = "https://raw.githubusercontent.com/thegreenlion42/BathVentRegulator/main/"
 ota_updater = OTAUpdater(SSID, PASSWORD, firmware_url, "main.py")
 
 ota_updater.download_and_install_update_if_available()
