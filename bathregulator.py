@@ -3,7 +3,6 @@ import time
 
 def Do():
     led_pin = 8  # Default on-board RGB LED GPIO08 does not work
-
     led = Pin(led_pin, Pin.OUT)
 
     for i in range(10):
