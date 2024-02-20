@@ -14,7 +14,7 @@ ota_updater.download_and_install_update_if_available()
 
 
 
-led_pin = 3  # Default on-board RGB LED GPIO08 does not work
+led_pin = 8  # Default on-board RGB LED GPIO08 does not work
 
 led = Pin(led_pin, Pin.OUT)
 
