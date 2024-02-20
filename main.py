@@ -2,7 +2,7 @@ from ota import OTAUpdater
 from WIFI_CONFIG import SSID, PASSWORD
 from machine import Pin
 import time
-
+#change
 #Update routine
 firmware_url = "https://raw.githubusercontent.com/thegreenlion42/BathVentRegulator/main/"
 ota_updater = OTAUpdater(SSID, PASSWORD, firmware_url, "main.py")
