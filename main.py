@@ -9,7 +9,6 @@ import ahtx0
 def UpdateRoutine():
     firmware_url = "https://raw.githubusercontent.com/thegreenlion42/BathVentRegulator/main/"
     ota_updater = OTAUpdater(SSID, PASSWORD, firmware_url, "main.py")
-
     ota_updater.download_and_install_update_if_available()
 
 #Sensor setup
