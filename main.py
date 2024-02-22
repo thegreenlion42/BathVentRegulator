@@ -30,12 +30,12 @@ bmp.press_os = BMP280_PRES_OS_4
 #bmp.spi3w = BMP280_SPI3W_ON
 count = 0
 while True:
-    print(count)
     
     if count == 0:
         UpdateRoutine()
     elif count >= 10:
         UpdateRoutine()
+        count=0
     count += 1
                 
     bmp.force_measure()
