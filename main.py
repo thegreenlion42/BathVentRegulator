@@ -26,8 +26,8 @@ bmp.press_os = BMP280_PRES_OS_4
 
 #bmp.standby = BMP280_STANDBY_250
 #bmp.iir = BMP280_IIR_FILTER_2
-
 #bmp.spi3w = BMP280_SPI3W_ON
+
 count = 0
 while True:
     
