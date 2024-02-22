@@ -1,21 +1,44 @@
 from ota import OTAUpdater
 from WIFI_CONFIG import SSID, PASSWORD
-from machine import Pin
+from machine import Pin, SoftI2C
+from bmp280 import *
 import time
-#change
+import ahtx0
+
 #Update routine
-firmware_url = "https://raw.githubusercontent.com/thegreenlion42/BathVentRegulator/main/"
-ota_updater = OTAUpdater(SSID, PASSWORD, firmware_url, "main.py")
+def UpdateRoutine():
+    firmware_url = "https://raw.githubusercontent.com/thegreenlion42/BathVentRegulator/main/"
+    ota_updater = OTAUpdater(SSID, PASSWORD, firmware_url, "main.py")
 
-ota_updater.download_and_install_update_if_available()
+    ota_updater.download_and_install_update_if_available()
 
-#Es lebt!
+#Sensor setup
+i2c = SoftI2C(scl=Pin(9), sda=Pin(8))
+bmp = BMP280(i2c)
 
-led_pin = 8  # Default on-board RGB LED GPIO08 does not work
+sensor = ahtx0.AHT20(i2c)
 
-led = Pin(led_pin, Pin.OUT)
+bmp.use_case(BMP280_CASE_INDOOR)
+bmp.oversample(BMP280_OS_HIGH)
 
-for i in range(10):
-  led.value(not led.value())
-  time.sleep_ms(500)
-  print("Blink ", i+1)
+bmp.temp_os = BMP280_TEMP_OS_8
+bmp.press_os = BMP280_PRES_OS_4
+
+#bmp.standby = BMP280_STANDBY_250
+#bmp.iir = BMP280_IIR_FILTER_2
+
+#bmp.spi3w = BMP280_SPI3W_ON
+count = 0
+while True:
+    count += 1
+  print(count)
+    if count == 0 or count >= 100:
+        UpdateRoutine()
+                
+    bmp.force_measure()
+
+    #print(bmp.temperature)
+    print(bmp.pressure)
+    print("x2:", bmp.temperature, "y2:", bmp.pressure)
+    print("x:", sensor.temperature, "y:", sensor.relative_humidity)
+    time.sleep(1)
