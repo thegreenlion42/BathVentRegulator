@@ -1,9 +1,11 @@
 from ota import OTAUpdater
 from WIFI_CONFIG import SSID, PASSWORD
-from machine import Pin, SoftI2C
+from machine import Pin, SoftI2C, freq
 from bmp280 import *
 import time
 import ahtx0
+
+freq(80000000)
 
 #Update routine
 def UpdateRoutine():
